@@ -8,8 +8,8 @@ export const hashPassword = async (password) => {
         const hashedPassword = await bcrypt.hash(password, saltRounds)
         return hashedPassword
     }
-    catch (err) {
-        console.log(chalk.red(err))
+    catch (error) {
+        console.log(chalk.red(error))
     }
 }
 
