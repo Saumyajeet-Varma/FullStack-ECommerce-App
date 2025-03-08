@@ -1,17 +1,17 @@
 /* eslint-disable */
-import Footer from "./Footer"
-import Header from "./Header"
+import Footer from "./Footer";
+import Header from "./Header";
 
 function Layout({ children }) {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="min-h-[80vh]">
+            <main role="main" className="flex-grow">
                 {children}
             </main>
             <Footer />
         </div>
-    )
+    );
 }
 
-export default Layout
+export default Layout;
