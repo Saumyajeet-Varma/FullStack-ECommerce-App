@@ -1,15 +1,19 @@
+import { Helmet } from "react-helmet"
+
 export default function PageNotFound() {
     return (
         <>
-            {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full">
-          <body class="h-full">
-          ```
-        */}
             <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <div>
+                        <meta name="description" content="Error page in MERN project" />
+                        <meta name="keywords" content="Error 404" />
+                        <meta name="author" content="Saumyajeet Varma" />
+                    </div>
+                    <title>404 - Page not found</title>
+                    {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+                </Helmet>
                 <div className="text-center">
                     <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-gray-700 sm:text-7xl">
                         404

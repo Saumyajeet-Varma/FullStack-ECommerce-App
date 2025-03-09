@@ -44,7 +44,7 @@ export default function Header() {
                     </div>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <div className="hidden sm:ml-6 sm:block">
-                            <div className="flex space-x-4">
+                            <div className="flex space-x-2">
                                 {navigationItems.map((item) => (
                                     <a
                                         key={item.name}

@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout"
 function Contact() {
     return (
         <>
-            <Layout>
+            <Layout title={"Contact us - Ecommerce"}>
                 <div className="relative isolate overflow-hidden bg-gray-900 min-h-[73.5vh] py-16">
 
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
