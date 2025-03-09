@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan';
 import chalk from 'chalk';
+import cors from 'cors';
+
 import connectDB from './config/db.js';
 import authRoute from "./routes/authRoute.js"
 
@@ -11,6 +13,7 @@ connectDB();
 
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 app.use(morgan("dev"));
 

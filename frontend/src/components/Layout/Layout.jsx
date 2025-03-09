@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { Helmet } from "react-helmet";
+import { Toaster } from "react-hot-toast";
 
 import Footer from "./Footer";
 import Header from "./Header";
@@ -20,6 +21,7 @@ function Layout({ children, title, description, keywords, author }) {
 
             <Header />
             <main role="main" className="flex-grow">
+                <Toaster />
                 {children}
             </main>
             <Footer />
