@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import chalk from 'chalk'
@@ -15,6 +15,7 @@ export default function Login() {
     const [auth, setAuth] = useAuth();
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -26,7 +27,7 @@ export default function Login() {
                 toast.success(response && response.data.message)
                 setAuth({ ...auth, user: response.data.user, token: response.data.token })
                 localStorage.setItem('auth', JSON.stringify(response.data))
-                navigate("/")
+                navigate(location.state || "/")
             }
             else {
                 toast.error(response.data.message)

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 import axios from "axios"
 
 import { useAuth } from "../../context/AuthProvider"
-import Spinner from "../Spinner"
+import UnauthorizedSpinner from "../UnauthorizedSpinner"
 
 function Private() {
 
@@ -23,7 +23,7 @@ function Private() {
         }
     }, [auth?.token])
 
-    return ok ? <Outlet /> : <Spinner />;
+    return ok ? <Outlet /> : <UnauthorizedSpinner />;
 }
 
 export default Private
