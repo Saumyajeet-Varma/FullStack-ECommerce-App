@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function UnauthorizedSpinner() {
+export default function UnauthorizedSpinner({ path = "login" }) {
 
-    const [count, setCount] = useState(5)
+    const [count, setCount] = useState(3)
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -14,12 +15,12 @@ export default function UnauthorizedSpinner() {
             setCount((count) => --count)
         }, 1000)
 
-        count === 0 && navigate("/login", {
+        count === 0 && navigate(`/${path}`, {
             state: location.pathname
         })
 
         return () => clearInterval(intervalId)
-    }, [count, navigate, location])
+    }, [count, navigate, location, path])
 
     return (
         <Layout>

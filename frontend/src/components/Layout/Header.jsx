@@ -8,15 +8,14 @@ import toast from "react-hot-toast";
 const navigationItems = [
     { name: "Home", href: "/" },
     { name: "Category", href: "/category" },
+    { name: "Cart", href: "/cart" },
     { name: "Register", href: "/register" },
     { name: "Login", href: "/login" },
-    { name: "Cart", href: "/cart" },
 ];
 
 const authNavigationItems = [
     { name: "Home", href: "/" },
     { name: "Category", href: "/category" },
-    { name: "Logout", href: "/login" },
     { name: "Cart", href: "/cart" },
 ];
 
@@ -83,12 +82,7 @@ export default function Header() {
                                     <a
                                         key={item.name}
                                         href={item.href}
-                                        onClick={() => {
-                                            setActiveTab(item.href)
-                                            if (item.name === "Logout") {
-                                                handleLogout()
-                                            }
-                                        }}
+                                        onClick={() => setActiveTab(item.href)}
                                         className={classNames(
                                             activeTab === item.href
                                                 ? "bg-gray-900 text-white"
@@ -102,7 +96,7 @@ export default function Header() {
                             </div>
                         </div>
 
-                        <Menu as="div" className="relative ml-5">
+                        {auth.user && <Menu as="div" className="relative ml-5">
                             <div>
                                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                     <span className="sr-only">Open user menu</span>
@@ -117,7 +111,7 @@ export default function Header() {
                                 <MenuItem>
                                     {({ active }) => (
                                         <a
-                                            href="#"
+                                            href={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
                                             className={classNames(
                                                 active ? "bg-gray-100" : "",
                                                 "block px-4 py-2 text-sm text-gray-700"
@@ -143,18 +137,19 @@ export default function Header() {
                                 <MenuItem>
                                     {({ active }) => (
                                         <a
-                                            href="#"
+                                            href="/login"
+                                            onClick={handleLogout}
                                             className={classNames(
                                                 active ? "bg-gray-100" : "",
                                                 "block px-4 py-2 text-sm text-gray-700"
                                             )}
                                         >
-                                            Sign out
+                                            Logout
                                         </a>
                                     )}
                                 </MenuItem>
                             </MenuItems>
-                        </Menu>
+                        </Menu>}
                     </div>
                 </div>
             </div>
