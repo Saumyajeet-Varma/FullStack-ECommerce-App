@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
+import { useAuth } from "../../context/AuthProvider";
+import toast from "react-hot-toast";
+
 const navigationItems = [
     { name: "Home", href: "/" },
     { name: "Category", href: "/category" },
@@ -10,12 +13,27 @@ const navigationItems = [
     { name: "Cart", href: "/cart" },
 ];
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-}
+const authNavigationItems = [
+    { name: "Home", href: "/" },
+    { name: "Category", href: "/category" },
+    { name: "Logout", href: "/login" },
+    { name: "Cart", href: "/cart" },
+];
 
 export default function Header() {
     const [activeTab, setActiveTab] = useState(window.location.pathname);
+
+    const [auth, setAuth] = useAuth()
+
+    const handleLogout = () => {
+        setAuth({ ...auth, user: null, token: "" })
+        localStorage.removeItem('auth')
+        toast.success("Logged out successfully")
+    }
+
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(" ");
+    }
 
     useEffect(() => {
         localStorage.setItem("activeTab", activeTab); // Store the active tab in localStorage
@@ -33,23 +51,44 @@ export default function Header() {
                         </DisclosureButton>
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div className="flex shrink-0 items-center">
-                            <img
-                                alt="Your Company"
-                                src="https://img.icons8.com/?size=100&id=LhRbsuC35iCh&format=png&color=FFFFFF"
-                                className="h-10 w-auto"
-                            />
-                            <p className="text-white text-2xl ml-5">E-Commerce</p>
-                        </div>
+                        <a href="/">
+                            <div className="flex shrink-0 items-center">
+                                <img
+                                    alt="Your Company"
+                                    src="https://img.icons8.com/?size=100&id=LhRbsuC35iCh&format=png&color=FFFFFF"
+                                    className="h-10 w-auto"
+                                />
+                                <p className="text-white text-2xl ml-5">E-Commerce</p>
+                            </div>
+                        </a>
                     </div>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-2">
-                                {navigationItems.map((item) => (
+                                {!auth.user ? navigationItems.map((item) => (
                                     <a
                                         key={item.name}
                                         href={item.href}
                                         onClick={() => setActiveTab(item.href)}
+                                        className={classNames(
+                                            activeTab === item.href
+                                                ? "bg-gray-900 text-white"
+                                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                            "rounded-md px-3 py-2 text-sm font-medium"
+                                        )}
+                                    >
+                                        {item.name}
+                                    </a>
+                                )) : authNavigationItems.map((item) => (
+                                    <a
+                                        key={item.name}
+                                        href={item.href}
+                                        onClick={() => {
+                                            setActiveTab(item.href)
+                                            if (item.name === "Logout") {
+                                                handleLogout()
+                                            }
+                                        }}
                                         className={classNames(
                                             activeTab === item.href
                                                 ? "bg-gray-900 text-white"
@@ -140,4 +179,4 @@ export default function Header() {
             </DisclosurePanel>
         </Disclosure>
     );
-}
+} 

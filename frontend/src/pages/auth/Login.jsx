@@ -5,11 +5,14 @@ import toast from 'react-hot-toast'
 import chalk from 'chalk'
 
 import Layout from '../../components/Layout/Layout'
+import { useAuth } from '../../context/AuthProvider'
 
 export default function Login() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const [auth, setAuth] = useAuth();
 
     const navigate = useNavigate()
 
@@ -21,6 +24,8 @@ export default function Login() {
 
             if (response && response.data.success) {
                 toast.success(response && response.data.message)
+                setAuth({ ...auth, user: response.data.user, token: response.data.token })
+                localStorage.setItem('auth', JSON.stringify(response.data))
                 navigate("/")
             }
             else {
@@ -35,7 +40,7 @@ export default function Login() {
 
     return (
         <>
-            <Layout title={"register - Ecommerce"}>
+            <Layout title={"login - Ecommerce"}>
                 <div className='mx-auto w-full md:w-3/4 lg:w-1/2 p-16'>
                     <h1 className='mb-10 text-3xl font-bold'>Login account</h1>
                     <form onSubmit={handleSubmit}>
@@ -86,7 +91,7 @@ export default function Login() {
                                 type="submit"
                                 className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                             >
-                                Submit
+                                Login
                             </button>
                         </div>
                     </form>

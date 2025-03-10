@@ -20,7 +20,7 @@ function Layout({ children, title, description, keywords, author }) {
             </Helmet>
 
             <Header />
-            <main role="main" className="flex-grow">
+            <main role="main" className="flex-grow overflow-scroll no-scrollbar">
                 <Toaster />
                 {children}
             </main>

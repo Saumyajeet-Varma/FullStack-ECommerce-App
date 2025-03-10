@@ -10,4 +10,9 @@ router.post("/login", loginController)
 
 router.get("/test", verifyJWT, isAdmin, testController)
 
+// Protected Routes
+router.get("/userAuth", verifyJWT, (req, res) => {
+    res.status(200).send({ ok: true })
+})
+
 export default router

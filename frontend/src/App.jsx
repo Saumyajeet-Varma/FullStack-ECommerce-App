@@ -7,17 +7,19 @@ import Policy from "./pages/Policy"
 import PageNotFound from "./pages/PageNotFound"
 import Register from "./pages/auth/Register"
 import Login from "./pages/auth/Login"
+import Dashboard from "./pages/user/Dashboard"
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
