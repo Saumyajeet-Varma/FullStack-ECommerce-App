@@ -6,7 +6,7 @@ const navigationItems = [
 
 function Footer() {
     return (
-        <footer className="bg-gray-800 text-white pt-5 pb-3">
+        <footer className="bg-gray-800 text-white pt-5 pb-3 drop-shadow-[0_-2px_5px_rgba(0,0,0,0.25)]">
             <div className="text-center mb-4">
                 <p className="text-gray-300">All rights reserved &copy; <span className="text-white font-bold">SV</span></p>
             </div>

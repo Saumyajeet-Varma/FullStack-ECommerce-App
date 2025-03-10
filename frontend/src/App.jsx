@@ -8,9 +8,12 @@ import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Private from "./components/Routes/Private.jsx";
-import AdminRoute from "./components/Routes/AdminRoute.jsx";
 import Dashboard from "./pages/user/Dashboard.jsx";
+import AdminRoute from "./components/Routes/AdminRoute.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import CreateCategory from "./pages/admin/CreateCategory.jsx";
+import CreateProduct from "./pages/admin/CreateProduct.jsx";
+import Users from "./pages/admin/Users.jsx";
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
 
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="admin" element={<AdminDashboard />} />
+        <Route path="admin/createCategory" element={<CreateCategory />} />
+        <Route path="admin/createProduct" element={<CreateProduct />} />
+        <Route path="admin/users" element={<Users />} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />

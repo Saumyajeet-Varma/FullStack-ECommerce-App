@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthProvider'
 
 function Homepage() {
 
-    const [auth, setAuth] = useAuth()
+    const [auth] = useAuth()
 
     return (
         <>
