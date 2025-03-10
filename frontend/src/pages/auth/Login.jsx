@@ -6,13 +6,10 @@ import chalk from 'chalk'
 
 import Layout from '../../components/Layout/Layout'
 
-export default function Register() {
+export default function Login() {
 
-    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [phone, setPhone] = useState("")
-    const [address, setAddress] = useState("")
 
     const navigate = useNavigate()
 
@@ -20,11 +17,11 @@ export default function Register() {
         e.preventDefault()
 
         try {
-            const response = await axios.post(`/api/v1/auth/register`, { name, email, password, phone, address })
+            const response = await axios.post(`/api/v1/auth/login`, { email, password })
 
             if (response && response.data.success) {
                 toast.success(response && response.data.message)
-                navigate("/login")
+                navigate("/")
             }
             else {
                 toast.error(response.data.message)
@@ -40,28 +37,11 @@ export default function Register() {
         <>
             <Layout title={"register - Ecommerce"}>
                 <div className='mx-auto w-full md:w-3/4 lg:w-1/2 p-16'>
-                    <h1 className='mb-10 text-3xl font-bold'>Create account</h1>
+                    <h1 className='mb-10 text-3xl font-bold'>Login account</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="space-y-12">
                             <div className="border-b border-gray-900/10 pb-12">
                                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
-
-                                    <div className="col-span-full">
-                                        <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
-                                            Name
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                id="name"
-                                                name="name"
-                                                type="text"
-                                                value={name}
-                                                onChange={(e) => setName(e.target.value)}
-                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
 
                                     <div className="col-span-full">
                                         <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
@@ -97,39 +77,6 @@ export default function Register() {
                                         </div>
                                     </div>
 
-                                    <div className="col-span-full">
-                                        <label htmlFor="phone" className="block text-sm/6 font-medium text-gray-900">
-                                            Phone
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                id="phone"
-                                                name="phone"
-                                                type="text"
-                                                value={phone}
-                                                onChange={(e) => setPhone(e.target.value)}
-                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-span-full">
-                                        <label htmlFor="address" className="block text-sm/6 font-medium text-gray-900">
-                                            Address
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                id="address"
-                                                name="address"
-                                                type="text"
-                                                value={address}
-                                                onChange={(e) => setAddress(e.target.value)}
-                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
