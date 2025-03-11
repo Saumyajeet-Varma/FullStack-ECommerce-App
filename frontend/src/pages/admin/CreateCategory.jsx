@@ -4,7 +4,7 @@ import AdminMenu from "../../components/Layout/AdminMenu"
 function CreateCategory() {
     return (
         <>
-            <Layout>
+            <Layout title={"Admin - Create Category"}>
                 <div className="flex">
                     <AdminMenu />
                     <div className="p-5">

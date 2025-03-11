@@ -4,7 +4,7 @@ import AdminMenu from "../../components/Layout/AdminMenu"
 function CreateProduct() {
     return (
         <>
-            <Layout>
+            <Layout title={"Admin - Create Product"}>
                 <div className="flex">
                     <AdminMenu />
                     <div className="p-5">

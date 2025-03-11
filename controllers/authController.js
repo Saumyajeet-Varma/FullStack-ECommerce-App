@@ -94,7 +94,7 @@ export const loginController = async (req, res) => {
 
         res.status(200).send({
             success: true,
-            message: "User logged in seuccessfully",
+            message: "User logged in successfully",
             user: {
                 name: user.name,
                 email: user.email,

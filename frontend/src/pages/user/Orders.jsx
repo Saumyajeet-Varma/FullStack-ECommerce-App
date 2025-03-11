@@ -1,14 +1,14 @@
 import Layout from "../../components/Layout/Layout"
-import AdminMenu from "../../components/Layout/AdminMenu"
+import UserMenu from "../../components/Layout/UserMenu"
 
-function Users() {
+function Orders() {
     return (
         <>
-            <Layout title={"Admin - Users"}>
+            <Layout title={"User - Orders"}>
                 <div className="flex">
-                    <AdminMenu />
+                    <UserMenu />
                     <div className="p-5">
-                        <h1>All Users</h1>
+                        <h1>Orders</h1>
                     </div>
                 </div>
             </Layout>
@@ -16,4 +16,4 @@ function Users() {
     )
 }
 
-export default Users
+export default Orders
