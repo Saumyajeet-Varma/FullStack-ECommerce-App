@@ -7,7 +7,7 @@ export default function CategoryForm({ value, setValue, handleSubmit, submitText
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                         <div className="col-span-full">
                             <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
-                                New category name
+                                Category name
                             </label>
                             <div className="mt-1">
                                 <input

@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post("/create-category", verifyJWT, isAdmin, createCategoryController)
 
-router.post("/update-category/:categoryId", verifyJWT, isAdmin, updateCategoryController)
+router.put("/update-category/:categoryId", verifyJWT, isAdmin, updateCategoryController)
 
 router.get("/categories", getAllCategoryController)
 
