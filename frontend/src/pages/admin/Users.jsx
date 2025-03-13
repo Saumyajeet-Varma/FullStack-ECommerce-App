@@ -7,7 +7,7 @@ function Users() {
             <Layout title={"Admin - Users"}>
                 <div className="flex">
                     <AdminMenu />
-                    <div className="p-5">
+                    <div className="p-5 w-full h-[73vh] overflow-scroll no-scrollbar">
                         <h1>All Users</h1>
                     </div>
                 </div>

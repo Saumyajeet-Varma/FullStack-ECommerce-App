@@ -7,7 +7,7 @@ function CreateProduct() {
             <Layout title={"Admin - Create Product"}>
                 <div className="flex">
                     <AdminMenu />
-                    <div className="p-5">
+                    <div className="p-5 w-full h-[73vh] overflow-scroll no-scrollbar">
                         <h1>Create Product</h1>
                     </div>
                 </div>
