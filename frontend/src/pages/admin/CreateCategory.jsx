@@ -44,6 +44,7 @@ function CreateCategory() {
 
             if (response.data.success) {
                 toast.success(`${response.data.category.name} is created`)
+                setName("")
                 getAllCategories()
             }
             else {
