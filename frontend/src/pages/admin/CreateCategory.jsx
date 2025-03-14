@@ -20,14 +20,14 @@ function CreateCategory() {
     const getAllCategories = async () => {
 
         try {
-            const response = await axios.get("/api/v1/category/categories")
+            const response = await axios.get("/api/v1/category/get-categories")
 
             if (response.data.success) {
                 setCategories(response.data.categories)
             }
         }
         catch (error) {
-            console.log(error)
+            console.log(chalk(error))
             toast.error(error.message)
         }
     }
@@ -106,7 +106,7 @@ function CreateCategory() {
                     <AdminMenu />
                     <div className="p-5 w-full h-[73vh] overflow-scroll no-scrollbar space-y-12">
                         <h1>Create Category</h1>
-                        <div>
+                        <div className="my-1 w-full">
                             <CategoryForm value={name} setValue={setName} handleSubmit={handleSubmit} submitText="Create category" />
                         </div>
                         <CategoryTable data={categories} setVisible={setVisible} setUpdatedName={setUpdatedName} setSelected={setSelected} handleDelete={handleDelete} />

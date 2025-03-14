@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.post("/create-product", verifyJWT, isAdmin, formidable(), createProductController)
 
-router.post("/update-product/:productId", verifyJWT, isAdmin, formidable(), updateProductController)
+router.put("/update-product/:productId", verifyJWT, isAdmin, formidable(), updateProductController)
 
 router.get("/get-products", getAllProductsController)
 

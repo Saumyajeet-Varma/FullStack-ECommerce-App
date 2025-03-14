@@ -13,6 +13,8 @@ import AdminRoute from "./components/Routes/AdminRoute.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import CreateCategory from "./pages/admin/CreateCategory.jsx";
 import CreateProduct from "./pages/admin/CreateProduct.jsx";
+import ProductPage from "./pages/admin/ProductPage.jsx";
+import Products from "./pages/admin/Products.jsx";
 import Users from "./pages/admin/Users.jsx";
 import Profile from "./pages/user/Profile.jsx";
 import Orders from "./pages/user/Orders.jsx";
@@ -38,6 +40,8 @@ function App() {
         <Route path="admin" element={<AdminDashboard />} />
         <Route path="admin/createCategory" element={<CreateCategory />} />
         <Route path="admin/createProduct" element={<CreateProduct />} />
+        <Route path="admin/product/:slug" element={<ProductPage />} />
+        <Route path="admin/products" element={<Products />} />
         <Route path="admin/users" element={<Users />} />
       </Route>
 

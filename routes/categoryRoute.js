@@ -8,7 +8,7 @@ router.post("/create-category", verifyJWT, isAdmin, createCategoryController)
 
 router.put("/update-category/:categoryId", verifyJWT, isAdmin, updateCategoryController)
 
-router.get("/categories", getAllCategoryController)
+router.get("/get-categories", getAllCategoryController)
 
 router.get("/category/:slug", getOneCategoryController)
 
