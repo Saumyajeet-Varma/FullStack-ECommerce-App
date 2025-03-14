@@ -97,7 +97,7 @@ export const updateProductController = async (req, res) => {
         if (!quantity) {
             return res.send({ message: "Quantity is required" })
         }
-        if (image && image.size > 1000000) {
+        if (!image || image.size > 1000000) {
             return res.send({ message: "Image is required and it's size must be less than 1Mb" })
         }
 
@@ -112,9 +112,7 @@ export const updateProductController = async (req, res) => {
             })
         }
 
-        const categoryDocument = await categoryModel.findOne({ name: category })
-
-        const updatedProduct = await productModel.findByIdAndUpdate(productId, { ...req.fields, slug, category: categoryDocument }, { new: true })
+        const updatedProduct = await productModel.findByIdAndUpdate(productId, { ...req.fields, slug }, { new: true })
 
         if (image) {
             updatedProduct.image.data = fs.readFileSync(image.path)

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Select } from "antd"
 import { PhotoIcon } from '@heroicons/react/24/solid'
@@ -8,16 +9,19 @@ function ProductForm({ update = false, submitText, handleSubmit, handleDelete, c
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="space-y-6">
+            <div className="mt-10 space-y-6">
                 <div className="pb-3">
+                    <label className="block text-sm/6 font-medium text-gray-900">
+                        Category of product
+                    </label>
                     <Select
                         placeholder="Select Category"
                         size="large"
                         onChange={(value) => setCategory(value)}
                         showSearch
-                        className="mt-10 w-full"
+                        className="mt-2 w-full"
                         name="category"
-                        value={category}
+                        value={category || undefined}
                     >
                         {categories.map(categoryOption => (
                             <Option key={categoryOption._id} value={categoryOption._id}>
@@ -119,6 +123,9 @@ function ProductForm({ update = false, submitText, handleSubmit, handleDelete, c
                             </div>
                         </div>
                     </div>
+                    <label className="block text-sm/6 font-medium text-gray-900">
+                        Shipping
+                    </label>
                     <Select
                         placeholder="Select Shipping"
                         size="large"
@@ -126,10 +133,10 @@ function ProductForm({ update = false, submitText, handleSubmit, handleDelete, c
                         showSearch
                         className="mt-2 w-full"
                         name="shipping"
-                        value={shipping ? "1" : "0"}
+                    // value={shipping ? "1" : "0"}
                     >
-                        <Option value={"0"}>No</Option>
                         <Option value={"1"}>Yes</Option>
+                        <Option value={"0"}>No</Option>
                     </Select>
                 </div>
 

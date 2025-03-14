@@ -46,6 +46,7 @@ function ProductPage() {
 
     useEffect(() => {
         getProduct()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getAllCategories = async () => {
@@ -77,8 +78,11 @@ function ProductPage() {
             productData.append("description", description)
             productData.append("price", price)
             productData.append("quantity", quantity)
-            image && productData.append("image", image)
             productData.append("category", category)
+
+            if (image instanceof File) {
+                productData.append("image", image);
+            }
 
             const response = await axios.put(`/api/v1/product/update-product/${id}`, productData)
 
