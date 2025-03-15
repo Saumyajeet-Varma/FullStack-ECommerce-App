@@ -6,6 +6,7 @@ import { Checkbox, Radio } from "antd"
 
 import Layout from "../components/Layout/Layout"
 import { prices } from "../utils/prices.js"
+import SearchInput from "../components/form/SearchInput.jsx"
 
 function Homepage() {
 
@@ -172,6 +173,7 @@ function Homepage() {
                     </div>
                     <div className="p-5 w-4/5">
                         <h1 className="text-center">Homepage</h1>
+                        <SearchInput />
                         <div>
                             <h2>All Products</h2>
                             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">

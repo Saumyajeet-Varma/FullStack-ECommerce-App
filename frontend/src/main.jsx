@@ -3,12 +3,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthProvider.jsx'
+import { SearchProvider } from './context/SearchProvider.jsx'
 // import 'antd/dist/reset.css'
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <SearchProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </SearchProvider>
   </AuthProvider>
 )

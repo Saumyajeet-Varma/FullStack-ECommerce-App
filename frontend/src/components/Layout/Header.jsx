@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { useAuth } from "../../context/AuthProvider";
-import toast from "react-hot-toast";
 
 const navigationItems = [
     { name: "Home", href: "/" },

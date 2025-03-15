@@ -18,6 +18,7 @@ import Products from "./pages/admin/Products.jsx";
 import Users from "./pages/admin/Users.jsx";
 import Profile from "./pages/user/Profile.jsx";
 import Orders from "./pages/user/Orders.jsx";
+import Search from "./pages/Search.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/policy" element={<Policy />} />
+      <Route path="/search" element={<Search />} />
 
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />

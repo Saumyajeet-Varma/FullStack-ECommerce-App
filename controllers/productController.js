@@ -4,7 +4,6 @@ import chalk from 'chalk'
 import fs from 'fs'
 
 import productModel from '../models/productModel.js'
-import categoryModel from '../models/categoryModel.js'
 
 export const createProductController = async (req, res) => {
 
@@ -322,6 +321,35 @@ export const productListController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: "Error in products per page controller",
+            error
+        })
+    }
+}
+
+export const searchProductController = async (req, res) => {
+
+    try {
+        const { keyword } = req.params
+
+        const result = await productModel.find({
+            $or: [
+                { name: { $regex: keyword, $options: "i" } },
+                { description: { $regex: keyword, $options: "i" } },
+            ]
+        }).select("-image")
+
+        res.status(200).send({
+            success: true,
+            message: "Searched product fetched",
+            result
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error in searching the product",
             error
         })
     }
