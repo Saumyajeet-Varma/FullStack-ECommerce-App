@@ -37,14 +37,14 @@ function Products() {
                     <div className="p-5 w-full h-[73vh] overflow-scroll no-scrollbar">
                         <h1>All products</h1>
                         <div>
-                            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">
                                 {products.map((product) => (
                                     <a href={`/dashboard/admin/product/${product.slug}`} key={product._id}>
-                                        <div className="group relative">
+                                        <div className="group relative p-4 bg-gray-200 rounded-lg">
                                             <img
                                                 alt="Product image"
                                                 src={`/api/v1/product/get-product-image/${product._id}`}
-                                                className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-80 lg:aspect-auto lg:h-80"
+                                                className="aspect-square w-full rounded-md bg-gray-100 object-cover group-hover:opacity-80 lg:aspect-auto lg:h-60"
                                             />
                                             <div className="mt-4 flex justify-between">
                                                 <div>

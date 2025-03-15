@@ -244,3 +244,85 @@ export const deleteProductController = async (req, res) => {
         })
     }
 }
+
+export const productFilterController = async (req, res) => {
+
+    try {
+        const { checked, radio } = req.body
+
+        let args = {}
+
+        if (checked.length > 0) {
+            args.category = checked
+        }
+
+        if (radio.length) {
+            args.price = { $gte: radio[0], $lte: radio[1] }
+        }
+
+        const products = await productModel.find(args)
+
+        res.status(200).send({
+            success: true,
+            message: "Products filtered successfully",
+            products
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error while filtering the product",
+            error
+        })
+    }
+}
+
+export const productCountController = async (req, res) => {
+
+    try {
+        const totalProducts = await productModel.find().estimatedDocumentCount()
+
+        res.status(200).send({
+            success: true,
+            message: "Total product count fetched",
+            totalProducts
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error while counting the products",
+            error
+        })
+    }
+}
+
+export const productListController = async (req, res) => {
+
+    try {
+        const page = req.params.page ? req.params.page : 1
+
+        const productsPerPage = 12
+
+        const products = await productModel.find().select("-image").skip((page - 1) * productsPerPage).limit(productsPerPage).sort({ createdAt: -1 })
+
+        res.status(200).send({
+            success: true,
+            message: "Products per page fetched successfully",
+            products
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error in products per page controller",
+            error
+        })
+    }
+}
