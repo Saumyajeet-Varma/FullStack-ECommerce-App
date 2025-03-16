@@ -44,17 +44,28 @@ const Cart = () => {
                 <div>
                     <h1 className="text-2xl font-semibold">{`Hello ${auth?.user?.name || "Guest"}`}</h1>
                     <h4 className="font-normal text-xl text-gray-500">{`You have ${cart?.length || 0} item(s) in your cart`}</h4>
-                    {!auth?.token && <h4 className="text-red-600">Please login to checkout</h4>}
+                    {!auth?.token && <h4 className="text-red-600">Please <a href="/login" className="font-bold">login</a> to checkout</h4>}
                 </div>
                 <div className="flex my-4 gap-6">
                     <div className="w-2/3">
                         <CartTable products={cart} handleRemove={handleRemove} />
                     </div>
-                    <div className="w-1/3 text-center">
-                        <h1 className="text-3xl font-semibold mb-2">Cart summary</h1>
+                    <div className="w-1/3">
+                        <h1 className="text-3xl text-center font-semibold mb-2">Cart summary</h1>
                         <hr />
-                        <div className="mt-5 text-lg">
-                            <h4>Total: <span className="font-semibold text-xl">${totalPrice()}</span></h4>
+                        <div className="mt-5 text-lg flex items-center justify-center">
+                            <div>
+                                <h4>Total: <span className="font-semibold text-xl">${totalPrice()}</span></h4>
+                                {auth?.user?.address ? (
+                                    <>
+                                        <h4>Delivery address: <span className="font-semibold text-xl">{auth.user.address}</span></h4>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h6 className="text-red-600">You need to <a href="/login" className="font-bold">login</a></h6>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
