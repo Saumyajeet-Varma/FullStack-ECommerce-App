@@ -2,12 +2,13 @@ import { Route, Routes } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
 import Categories from "./pages/Categories.jsx";
+import Cart from "./pages/Cart.jsx";
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Policy from "./pages/Policy";
 import PageNotFound from "./pages/PageNotFound";
-import Register from "./pages/auth/Register";
-import Login from "./pages/auth/Login";
 import Private from "./components/Routes/Private.jsx";
 import Dashboard from "./pages/user/Dashboard.jsx";
 import AdminRoute from "./components/Routes/AdminRoute.jsx";
@@ -28,6 +29,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/categories" element={<Categories />} />
+      <Route path="/cart" element={<Cart />} />
 
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
