@@ -165,7 +165,7 @@ export const getOneProductController = async (req, res) => {
     try {
         const { slug } = req.params
 
-        const product = await productModel.findOne({ slug })
+        const product = await productModel.findOne({ slug }).select("-image").populate("category")
 
         res.status(200).send({
             success: true,
@@ -342,6 +342,33 @@ export const searchProductController = async (req, res) => {
             success: true,
             message: "Searched product fetched",
             result
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error in searching the product",
+            error
+        })
+    }
+}
+
+export const similarProductController = async (req, res) => {
+
+    try {
+        const { categoryId, productId } = req.params
+
+        const products = await productModel.find({
+            category: categoryId,
+            _id: { $ne: productId }
+        }).select("-image").limit(4).populate("category")
+
+        res.status(200).send({
+            success: true,
+            message: "Similar products fetched",
+            products
         })
     }
     catch (error) {
