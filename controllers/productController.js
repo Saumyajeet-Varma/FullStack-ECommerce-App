@@ -4,6 +4,7 @@ import chalk from 'chalk'
 import fs from 'fs'
 
 import productModel from '../models/productModel.js'
+import categoryModel from '../models/categoryModel.js'
 
 export const createProductController = async (req, res) => {
 
@@ -376,7 +377,34 @@ export const similarProductController = async (req, res) => {
 
         res.status(500).send({
             success: false,
-            message: "Error in searching the product",
+            message: "Error in fetching similar the products",
+            error
+        })
+    }
+}
+
+export const categoryProductsController = async (req, res) => {
+
+    try {
+        const { slug } = req.params
+
+        const category = await categoryModel.findOne({ slug })
+
+        const products = await productModel.find({ category }).populate()
+
+        res.status(200).send({
+            success: true,
+            message: "Category products fetched successfully",
+            products,
+            category
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error in fecthing category products",
             error
         })
     }

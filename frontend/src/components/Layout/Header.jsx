@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthProvider";
 
 const navigationItems = [
     { name: "Home", href: "/" },
-    { name: "Category", href: "/category" },
+    { name: "Categories", href: "/categories" },
     { name: "Cart", href: "/cart" },
     { name: "Register", href: "/register" },
     { name: "Login", href: "/login" },
@@ -15,7 +15,7 @@ const navigationItems = [
 
 const authNavigationItems = [
     { name: "Home", href: "/" },
-    { name: "Category", href: "/category" },
+    { name: "Categories", href: "/categories" },
     { name: "Cart", href: "/cart" },
 ];
 

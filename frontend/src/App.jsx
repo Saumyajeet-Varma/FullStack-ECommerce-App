@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
+import Categories from "./pages/Categories.jsx";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Policy from "./pages/Policy";
@@ -20,20 +21,24 @@ import Profile from "./pages/user/Profile.jsx";
 import Orders from "./pages/user/Orders.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import Category from "./pages/Category.jsx";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path="/categories" element={<Categories />} />
+
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/policy" element={<Policy />} />
 
       <Route path="/search" element={<Search />} />
       <Route path="/product/:slug" element={<ProductDetails />} />
-
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/categories/:slug" element={<Category />} />
 
       <Route path="/dashboard" element={<Private />}>
         <Route path="user" element={<Dashboard />} />
