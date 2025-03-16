@@ -9,14 +9,27 @@ const UserMenu = () => {
         <div className="min-h-[73.4vh] w-1/5 p-3 bg-gray-100 text-gray-800 border-y-1 drop-shadow-3xl">
             <ul className="space-y-2">
                 <a
-                    href="/dashboard/user/profile"
+                    href="/dashboard/user/update-profile"
                     className={`text-md flex items-center gap-4 py-4 px-3 rounded-lg hover:bg-gray-200 ${isActive("/dashboard/admin/createCategory") ? "bg-gray-200 text-gray-800" : ""
                         }`}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
-                    <p>Profile</p>
+                    <p>Update Profile</p>
+                </a>
+                <hr className="border-gray-300" />
+
+                <a
+                    href="/dashboard/user/change-password"
+                    className={`text-md flex items-center gap-4 py-4 px-3 rounded-lg hover:bg-gray-200 ${isActive("/dashboard/admin/createCategory") ? "bg-gray-200 text-gray-800" : ""
+                        }`}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                    </svg>
+
+                    <p>Change password</p>
                 </a>
                 <hr className="border-gray-300" />
 

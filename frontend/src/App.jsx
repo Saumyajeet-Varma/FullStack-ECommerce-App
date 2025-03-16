@@ -23,6 +23,7 @@ import Orders from "./pages/user/Orders.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Category from "./pages/Category.jsx";
+import ChangePassword from "./pages/user/ChangePassword.jsx";
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
 
       <Route path="/dashboard" element={<Private />}>
         <Route path="user" element={<Dashboard />} />
-        <Route path="user/profile" element={<Profile />} />
+        <Route path="user/update-profile" element={<Profile />} />
+        <Route path="user/change-password" element={<ChangePassword />} />
         <Route path="user/orders" element={<Orders />} />
       </Route>
 

@@ -115,3 +115,86 @@ export const loginController = async (req, res) => {
         })
     }
 }
+
+export const updateProfileController = async (req, res) => {
+
+    try {
+        const { name, email, phone, address } = req.body
+
+        const user = await userModel.findById(req.user._id)
+
+        const updatedUser = await userModel.findByIdAndUpdate(req.user._id, {
+            name: name || user.name,
+            email: email || user.email,
+            phone: phone || user.phone,
+            address: address || user.address,
+        }, { new: true })
+
+        res.status(200).send({
+            success: true,
+            message: "User profile updated successfully",
+            user: {
+                name: updatedUser.name,
+                email: updatedUser.email,
+                phone: updatedUser.phone,
+                address: updatedUser.address,
+            }
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error in updating profile",
+            error
+        })
+    }
+}
+
+export const changePasswordController = async (req, res) => {
+
+    try {
+        const { currentPassword, newPassword } = req.body
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).send({ message: "All fields are required" })
+        }
+
+        const user = await userModel.findById(req?.user?._id)
+
+        if (!user) {
+            return res.status(404).send({
+                success: false,
+                message: "User not found",
+            })
+        }
+
+        const correctPassword = await comparePassword(currentPassword, user.password)
+
+        if (!correctPassword) {
+            return res.status(403).send({
+                success: false,
+                message: "Crrent password is wrong",
+            })
+        }
+
+        const hashedPassword = await hashPassword(newPassword)
+
+        const updatedUser = await userModel.findByIdAndUpdate(req.user._id, { password: hashedPassword }, { new: true })
+
+        return res.status(200).send({
+            success: true,
+            message: "Password changed successfully",
+        })
+    }
+    catch (error) {
+        console.log(chalk.red(error));
+
+        res.status(500).send({
+            success: false,
+            message: "Error in changing password",
+            error
+        })
+    }
+}

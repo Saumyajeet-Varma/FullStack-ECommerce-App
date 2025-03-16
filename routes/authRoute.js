@@ -1,5 +1,5 @@
 import express from 'express'
-import { registerController, loginController } from '../controllers/authController.js'
+import { registerController, loginController, updateProfileController, changePasswordController } from '../controllers/authController.js'
 import { isAdmin, verifyJWT } from '../middlewares/authMiddleware.js'
 
 const router = express.Router()
@@ -8,7 +8,10 @@ router.post('/register', registerController)
 
 router.post("/login", loginController)
 
-// Protected Routes
+router.put("/update-profile", verifyJWT, updateProfileController)
+
+router.put("/change-password", verifyJWT, changePasswordController)
+
 router.get("/userAuth", verifyJWT, (req, res) => {
     res.status(200).send({ ok: true })
 })

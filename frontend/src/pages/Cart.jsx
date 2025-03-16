@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import chalk from "chalk";
 
@@ -6,13 +5,10 @@ import Layout from "../components/Layout/Layout.jsx";
 import CartTable from "../components/CartTable.jsx"
 import { useAuth } from "../context/AuthProvider";
 import { useCart } from "../context/CartProvider";
-import { AcademicCapIcon } from "@heroicons/react/24/outline";
 
 const Cart = () => {
     const [auth] = useAuth();
     const [cart, setCart] = useCart();
-
-    const navigate = useNavigate();
 
     const totalPrice = () => {
 
