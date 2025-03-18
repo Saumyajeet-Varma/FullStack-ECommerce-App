@@ -5,11 +5,13 @@ import axios from "axios"
 import chalk from "chalk"
 
 import Layout from "../components/Layout/Layout"
+import Spinner from "../components/Spinner"
 
 const ProductDetails = () => {
 
     const [product, setProduct] = useState({})
     const [similarProducts, setSimilarProducts] = useState([])
+    const [similarProductLoading, setSimilarProductLoading] = useState(false)
 
     const navigate = useNavigate()
     const params = useParams()
@@ -38,7 +40,10 @@ const ProductDetails = () => {
     }
 
     const getSimilarProducts = async (categoryId, productId) => {
+
         try {
+            setSimilarProductLoading(true)
+
             const response = await axios.get(`/api/v1/product/similar-products/${categoryId}/${productId}`)
 
             if (response.data.success) {
@@ -48,6 +53,9 @@ const ProductDetails = () => {
         catch (error) {
             console.log(chalk.red(error))
             toast.error(error.message)
+        }
+        finally {
+            setSimilarProductLoading(false)
         }
     }
 
@@ -73,7 +81,7 @@ const ProductDetails = () => {
                         </button>
                     </div>
                 </div>
-                {similarProducts.length > 0 ? (<div className="mt-10">
+                {similarProductLoading ? <Spinner /> : (similarProducts.length > 0 ? (<div className="mt-10">
                     <h1 className="text-2xl font-bold mb-5">Similar products</h1>
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">
                         {similarProducts.map((product) => (
@@ -104,7 +112,7 @@ const ProductDetails = () => {
                             </div>
                         ))}
                     </div>
-                </div>) : (<></>)}
+                </div>) : (<></>))}
             </div>
         </Layout>
     )

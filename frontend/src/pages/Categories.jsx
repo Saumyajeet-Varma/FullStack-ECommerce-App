@@ -1,5 +1,6 @@
 import Layout from "../components/Layout/Layout"
 import useCategory from "../hooks/useCategory"
+import { capitalizeString } from "../utils/capitalizeString"
 
 const Categories = () => {
 
@@ -16,7 +17,7 @@ const Categories = () => {
                                     <div className="flex items-center gap-x-6">
                                         <h1 className="text-2xl text-gray-400">{index + 1 < 10 ? `0${index + 1}` : index + 1}</h1>
                                         <div>
-                                            <h3 className="text-base/7 font-semibold tracking-tight text-gray-700">{category.name}</h3>
+                                            <h3 className="text-base/7 font-semibold tracking-tight text-gray-700">{capitalizeString(category?.name)}</h3>
                                         </div>
                                     </div>
                                 </li>
