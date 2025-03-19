@@ -57,7 +57,7 @@ export default function Header() {
                                     src="https://img.icons8.com/?size=100&id=LhRbsuC35iCh&format=png&color=FFFFFF"
                                     className="h-10 w-auto"
                                 />
-                                <p className="text-white text-2xl ml-5">E-Commerce</p>
+                                <p className="text-white text-3xl ml-5 exo-2">Cartify</p>
                             </div>
                         </a>
                     </div>
