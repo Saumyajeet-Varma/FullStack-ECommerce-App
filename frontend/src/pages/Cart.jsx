@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 import chalk from "chalk";
+import DropIn from "braintree-web-drop-in-react";
 
 import Layout from "../components/Layout/Layout.jsx";
 import CartTable from "../components/CartTable.jsx"
@@ -7,8 +11,16 @@ import { useAuth } from "../context/AuthProvider";
 import { useCart } from "../context/CartProvider";
 
 const Cart = () => {
+
+    const [clientToken, setClientToken] = useState("")
+    const [instance, setInstance] = useState("")
+    const [paymentLoading, setPaymentLoading] = useState(false)
+
     const [auth] = useAuth();
     const [cart, setCart] = useCart();
+
+
+    const navigate = useNavigate()
 
     const totalPrice = () => {
 
@@ -38,19 +50,54 @@ const Cart = () => {
         }
     }
 
-    const handleCheckout = () => {
+    const handlePayment = async () => {
 
         try {
-            const myCart = []
-            setCart(myCart)
-            localStorage.setItem("cart", JSON.stringify(myCart))
-            toast.success("Checked out sucessfully");
+            setPaymentLoading(true)
+
+            const { nonce } = await instance.requestPaymentMethod()
+
+            if (!nonce) {
+                throw new Error("Failed to get payment nonce");
+            }
+
+            const response = await axios.post("/api/v1/product/braintree/payment", { cart, nonce })
+
+            if (response.data.success) {
+                console.log("check")
+                localStorage.removeItem("cart")
+                setCart([])
+                navigate("/dashboard/user/orders")
+                toast.success("Payment completed successfully")
+            }
         }
         catch (error) {
             console.log(chalk.red(error))
-            toast.error("Failed to checkout")
+            toast.error("Error in payment")
+        }
+        finally {
+            setPaymentLoading(false)
         }
     }
+
+    const getClientToken = async () => {
+
+        try {
+            const response = await axios.get("/api/v1/product/braintree/token")
+
+            if (response.data.success) {
+                setClientToken(response.data.token)
+            }
+        }
+        catch (error) {
+            console.log(chalk.red(error))
+            toast.error("Failed to get client token")
+        }
+    }
+
+    useEffect(() => {
+        getClientToken()
+    }, [auth?.token])
 
     return (
         <Layout>
@@ -68,7 +115,7 @@ const Cart = () => {
                         <h1 className="text-3xl text-center font-semibold mb-2">Cart summary</h1>
                         <hr />
                         <div className="mt-5 text-lg flex items-center justify-center">
-                            <div>
+                            <div className="w-full">
                                 <h4>Total: <span className="font-semibold text-xl">${totalPrice()}</span></h4>
                                 {auth?.user?.address ? (
                                     <>
@@ -79,24 +126,35 @@ const Cart = () => {
                                         <h6 className="text-red-600">You need to <a href="/login" className="font-bold">login</a></h6>
                                     </>
                                 )}
-                                {(auth?.user && cart.length) ? (
-                                    <div className="mt-10">
-                                        <button
-                                            onClick={() => handleCheckout()}
-                                            className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
-                                        >
-                                            Checkout
+                                <div className="mt-5">
+                                    {!clientToken || !cart?.length ? (
+                                        <></>
+                                    ) : (
+                                        <>
+                                            <DropIn
+                                                options={{
+                                                    authorization: clientToken,
+                                                    paypal: {
+                                                        flow: "vault",
+                                                    },
+                                                }}
+                                                onInstance={(instance) => setInstance(instance)}
+                                            />
 
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <></>
-                                )}
+                                            <button
+                                                onClick={handlePayment}
+                                                className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                                                disabled={paymentLoading || !instance || !auth?.user?.address}
+                                            >
+                                                {paymentLoading ? "Processing ...." : "Make Payment"}
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </Layout>
     );
