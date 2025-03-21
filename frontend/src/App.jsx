@@ -20,6 +20,7 @@ import Products from "./pages/admin/Products.jsx";
 import Users from "./pages/admin/Users.jsx";
 import Profile from "./pages/user/Profile.jsx";
 import Orders from "./pages/user/Orders.jsx";
+import OrderPage from "./pages/user/OrderPage.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Category from "./pages/Category.jsx";
@@ -48,6 +49,7 @@ function App() {
         <Route path="user/update-profile" element={<Profile />} />
         <Route path="user/change-password" element={<ChangePassword />} />
         <Route path="user/orders" element={<Orders />} />
+        <Route path="user/order/:orderId" element={<OrderPage />} />
       </Route>
 
       <Route path="/dashboard" element={<AdminRoute />}>

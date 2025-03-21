@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const CartTable = ({ products, handleRemove }) => {
+const ProductTable = ({ products, purpose, handleRemove }) => {
     return (
         <div className="container">
             <div className="overflow-x-auto w-full">
@@ -7,8 +7,8 @@ const CartTable = ({ products, handleRemove }) => {
                     <thead>
                         <tr className="bg-gray-100">
                             <th className="py-3 px-6 text-left text-gray-600 font-semibold">Product Image</th>
-                            <th className="py-3 px-6 text-left text-gray-600 font-semibold">Product Name</th>
-                            <th className="py-3 px-6 text-left text-gray-600 font-semibold"></th>
+                            <th className="py-3 px-6 text-left text-gray-600 font-semibold">Product Details</th>
+                            {purpose === "cart" && <th className="py-3 px-6 text-left text-gray-600 font-semibold"></th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@ const CartTable = ({ products, handleRemove }) => {
                                     </p>
                                     <p className="mt-2 text-md font-medium">${product.price}</p>
                                 </td>
-                                <td>
+                                {purpose === "cart" && <td>
                                     <button
                                         onClick={() => handleRemove(product._id)}
                                         className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
@@ -36,7 +36,7 @@ const CartTable = ({ products, handleRemove }) => {
                                     >
                                         Remove
                                     </button>
-                                </td>
+                                </td>}
                             </tr>
                         ))}
                     </tbody>
@@ -46,4 +46,4 @@ const CartTable = ({ products, handleRemove }) => {
     );
 };
 
-export default CartTable;
+export default ProductTable;
