@@ -1,7 +1,28 @@
 /* eslint-disable react/prop-types */
-import moment from 'moment'
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import moment from 'moment';
+import { Select } from 'antd';
 
-const OrderTable = ({ orders }) => {
+const { Option } = Select
+
+const OrderTable = ({ orders, admin, status }) => {
+
+    const handleChange = async (value, orderId) => {
+
+        try {
+            const response = await axios.put(`/api/v1/auth/change-order-status/${orderId}`, { status: value })
+
+            if (response.data.success) {
+                toast.success("Status changed successfully")
+            }
+        }
+        catch (error) {
+            console.log(error)
+            toast.error("Error in changing the status")
+        }
+    }
+
     return (
         <div className="container">
             <div className="overflow-x-auto w-full">
@@ -21,20 +42,26 @@ const OrderTable = ({ orders }) => {
                         {orders?.map((order, index) => (
                             <tr key={order?._id} className="border-b">
                                 <td className="py-3 px-6">{index + 1 < 10 ? `0${index + 1}` : index + 1}</td>
-                                <td className="py-3 px-6">{order?.status}</td>
+                                <td className="py-3 px-6">{admin ? (
+                                    <Select bordered={false} onChange={(val) => handleChange(val, order._id)} defaultValue={order?.status}>
+                                        {status.map((item, index) => (
+                                            <Option key={index} value={item}>{item}</Option>
+                                        ))}
+                                    </Select>
+                                ) : order?.status}</td>
                                 <td className="py-3 px-6">{order?.buyer?.name}</td>
                                 <td className="py-3 px-6">{moment(order?.createdAt).fromNow()}</td>
                                 <td className="py-3 px-6">{order?.payment.success ? "Success" : "Failed"}</td>
                                 <td className="py-3 px-6">{order?.products?.length}</td>
                                 <td className="py-3 px-6">
-                                    <a href={`/dashboard/user/order/${order._id}`} className='text-gray-600 underline font-semibold'>Click</a>
+                                    <a href={admin ? `/dashboard/admin/order/${order._id}` : `/dashboard/user/order/${order._id}`} className='text-gray-600 underline font-semibold'>Click</a>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 

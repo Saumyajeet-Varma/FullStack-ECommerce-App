@@ -25,6 +25,8 @@ import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Category from "./pages/Category.jsx";
 import ChangePassword from "./pages/user/ChangePassword.jsx";
+import AdminOrders from "./pages/admin/AdminOrders.jsx";
+import AdminOrderPage from "./pages/admin/AdminOrderPage.jsx";
 
 function App() {
   return (
@@ -58,6 +60,8 @@ function App() {
         <Route path="admin/createProduct" element={<CreateProduct />} />
         <Route path="admin/product/:slug" element={<ProductPage />} />
         <Route path="admin/products" element={<Products />} />
+        <Route path="admin/orders" element={<AdminOrders />} />
+        <Route path="admin/order/:orderId" element={<AdminOrderPage />} />
         <Route path="admin/users" element={<Users />} />
       </Route>
 
