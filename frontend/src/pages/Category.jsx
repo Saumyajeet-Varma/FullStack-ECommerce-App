@@ -46,7 +46,7 @@ const Category = () => {
 
     return (
         <>
-            <Layout>
+            <Layout title={`Category - ${capitalizeString(category?.name)}`}>
                 {loading ? <Spinner /> :
                     <div>
                         <div className="px-10 py-5">

@@ -40,7 +40,7 @@ function OrderPage() {
 
     return (
         <>
-            <Layout title={"User - Orders"}>
+            <Layout title={`Order - ${order._id}`}>
                 <div className="flex">
                     <UserMenu />
                     <div className="p-5 w-4/5">

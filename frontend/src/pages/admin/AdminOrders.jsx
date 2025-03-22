@@ -38,7 +38,7 @@ function AdminOrders() {
 
     return (
         <>
-            <Layout title={"Admin - Users"}>
+            <Layout title={"Orders"}>
                 <div className="flex">
                     <AdminMenu />
                     <div className="p-5 w-4/5">

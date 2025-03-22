@@ -17,7 +17,6 @@ import CreateCategory from "./pages/admin/CreateCategory.jsx";
 import CreateProduct from "./pages/admin/CreateProduct.jsx";
 import ProductPage from "./pages/admin/ProductPage.jsx";
 import Products from "./pages/admin/Products.jsx";
-import Users from "./pages/admin/Users.jsx";
 import Profile from "./pages/user/Profile.jsx";
 import Orders from "./pages/user/Orders.jsx";
 import OrderPage from "./pages/user/OrderPage.jsx";
@@ -62,7 +61,6 @@ function App() {
         <Route path="admin/products" element={<Products />} />
         <Route path="admin/orders" element={<AdminOrders />} />
         <Route path="admin/order/:orderId" element={<AdminOrderPage />} />
-        <Route path="admin/users" element={<Users />} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />

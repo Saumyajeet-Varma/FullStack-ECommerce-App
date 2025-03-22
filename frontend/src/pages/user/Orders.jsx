@@ -36,7 +36,7 @@ function Orders() {
 
     return (
         <>
-            <Layout title={"User - Orders"}>
+            <Layout title={`Your Orders`}>
                 <div className="flex">
                     <UserMenu />
                     <div className="p-5 w-4/5">

@@ -37,7 +37,7 @@ export default function Register() {
 
     return (
         <>
-            <Layout title={"register - Ecommerce"}>
+            <Layout title={"Cartify - Register"}>
                 <div className='mx-auto w-full md:w-3/4 lg:w-1/2 p-16'>
                     <h1 className='mb-10 text-3xl font-bold'>Create account</h1>
                     <form onSubmit={handleSubmit}>

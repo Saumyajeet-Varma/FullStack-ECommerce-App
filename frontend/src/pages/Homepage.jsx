@@ -171,7 +171,7 @@ function Homepage() {
 
     return (
         <>
-            <Layout title={"Best offers - Ecommerce"}>
+            <Layout title={"Cartify - Shop now"}>
                 <div className="flex min-h-[73.5px]">
                     <div className="w-1/5 py-5 px-5 bg-gray-100 space-y-4">
                         <div>

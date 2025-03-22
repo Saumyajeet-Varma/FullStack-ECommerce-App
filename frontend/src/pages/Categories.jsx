@@ -7,7 +7,7 @@ const Categories = () => {
     const categories = useCategory()
 
     return (
-        <Layout>
+        <Layout title={"Cartify - Categories"}>
             <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-1">
                     <ul role="list" className="grid gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-y-4 xl:col-span-2">

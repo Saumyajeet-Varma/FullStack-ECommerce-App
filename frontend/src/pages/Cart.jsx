@@ -100,7 +100,7 @@ const Cart = () => {
     }, [auth?.token]);
 
     return (
-        <Layout>
+        <Layout title={"Cartify - Cart"}>
             <div className="px-20 py-10">
                 <div>
                     <h1 className="text-2xl font-semibold">{`Hello ${auth?.user?.name || "Guest"

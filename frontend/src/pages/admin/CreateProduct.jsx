@@ -70,11 +70,11 @@ function CreateProduct() {
 
     return (
         <>
-            <Layout title={"Admin - Create Product"}>
+            <Layout title={"Create product"}>
                 <div className="flex">
                     <AdminMenu />
                     <div className="p-5 w-full h-[73vh] overflow-scroll no-scrollbar">
-                        <h1>Create Product</h1>
+                        <h1 className="text-3xl font-semibold">Create Product</h1>
                         <div className="my-1 w-full">
                             <ProductForm submitText="Create product" handleSubmit={handleSubmit} categories={categories} name={name} description={description} category={category} price={price} quantity={quantity} image={image} shipping={shipping} setName={setName} setDescription={setDescription} setCategory={setCategory} setPrice={setPrice} setQuantity={setQuantity} setImage={setImage} setShipping={setShipping} />
                         </div>

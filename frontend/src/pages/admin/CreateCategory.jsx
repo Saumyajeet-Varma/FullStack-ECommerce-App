@@ -100,11 +100,11 @@ function CreateCategory() {
 
     return (
         <>
-            <Layout title={"Admin - Create Category"}>
+            <Layout title={"Create category"}>
                 <div className="flex">
                     <AdminMenu />
                     <div className="p-5 w-full h-[73vh] overflow-scroll no-scrollbar space-y-12">
-                        <h1>Create Category</h1>
+                        <h1 className="text-3xl font-semibold">Create Category</h1>
                         <div className="my-1 w-full">
                             <CategoryForm value={name} setValue={setName} handleSubmit={handleSubmit} submitText="Create category" />
                         </div>

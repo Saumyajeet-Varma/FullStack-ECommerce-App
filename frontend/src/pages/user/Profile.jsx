@@ -51,7 +51,7 @@ function Profile() {
 
     return (
         <>
-            <Layout title={"User - Profile"}>
+            <Layout title={"Your Profile"}>
                 <div className="flex">
                     <UserMenu />
                     <div className='mx-auto w-full md:w-3/4 lg:w-1/2 p-16'>

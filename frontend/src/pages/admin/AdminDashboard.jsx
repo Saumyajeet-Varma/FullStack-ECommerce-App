@@ -8,7 +8,7 @@ function AdminDashboard() {
 
     return (
         <>
-            <Layout title={"Admin - Dashboard"}>
+            <Layout title={`${auth?.user.name} - Dashboard`}>
                 <div className="flex">
                     <AdminMenu />
                     <div className="p-5">

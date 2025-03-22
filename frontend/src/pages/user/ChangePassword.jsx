@@ -31,7 +31,7 @@ const ChangePassword = () => {
     }
 
     return (
-        <Layout title={"User - Profile"}>
+        <Layout title={"Change password"}>
             <div className="flex">
                 <UserMenu />
                 <div className='mx-auto w-full md:w-3/4 lg:w-1/2 p-16'>

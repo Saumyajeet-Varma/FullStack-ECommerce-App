@@ -59,7 +59,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <Layout>
+        <Layout title={`Product - ${product?.name}`}>
             <div className="w-full px-20 py-5">
                 <div className="flex w-full p-5 items-center bg-gray-100 gap-10 rounded-lg">
                     <div className="w-1/3 flex justify-end items-center">
