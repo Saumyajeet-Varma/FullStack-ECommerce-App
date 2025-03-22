@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import axios from "axios"
-import chalk from "chalk"
 
 import Layout from "../../components/Layout/Layout"
 import AdminMenu from "../../components/Layout/AdminMenu"
@@ -20,7 +19,7 @@ function Products() {
             }
         }
         catch (error) {
-            console.log(chalk(error))
+            console.log(error)
             toast.error(error.message)
         }
     }

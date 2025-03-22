@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import axios from "axios"
-import chalk from "chalk"
 import { Modal } from 'antd';
 
 import Layout from "../../components/Layout/Layout"
@@ -27,7 +26,7 @@ function CreateCategory() {
             }
         }
         catch (error) {
-            console.log(chalk(error))
+            console.log(error)
             toast.error(error.message)
         }
     }
@@ -52,7 +51,7 @@ function CreateCategory() {
             }
         }
         catch (error) {
-            console.log(chalk(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
     }
@@ -75,7 +74,7 @@ function CreateCategory() {
             }
         }
         catch (error) {
-            console.log(chalk(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
     }
@@ -94,7 +93,7 @@ function CreateCategory() {
             }
         }
         catch (error) {
-            console.log(chalk(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
     }

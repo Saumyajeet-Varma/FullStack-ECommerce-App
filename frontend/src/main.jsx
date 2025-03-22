@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthProvider.jsx'
 import { SearchProvider } from './context/SearchProvider.jsx'
 import { CartProvider } from './context/CartProvider.jsx'
-// import 'antd/dist/reset.css'
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>

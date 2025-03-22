@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import Layout from "./Layout/Layout";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import Layout from "./Layout/Layout";
 
 export default function UnauthorizedSpinner({ path = "login" }) {
 

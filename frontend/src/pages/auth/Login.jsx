@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import toast from 'react-hot-toast'
-import chalk from 'chalk'
+import axios from 'axios'
 
 import Layout from '../../components/Layout/Layout'
 import { useAuth } from '../../context/AuthProvider'
@@ -34,7 +33,7 @@ export default function Login() {
             }
         }
         catch (error) {
-            console.log(chalk(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
     }

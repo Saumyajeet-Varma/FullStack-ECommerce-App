@@ -133,7 +133,6 @@ function ProductForm({ update = false, submitText, handleSubmit, handleDelete, c
                         showSearch
                         className="mt-2 w-full"
                         name="shipping"
-                    // value={shipping ? "1" : "0"}
                     >
                         <Option value={"1"}>Yes</Option>
                         <Option value={"0"}>No</Option>

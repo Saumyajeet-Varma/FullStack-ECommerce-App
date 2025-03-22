@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import axios from "axios"
-import chalk from "chalk"
 import { Checkbox, Radio } from "antd"
 
 import Layout from "../components/Layout/Layout"
@@ -41,7 +40,7 @@ function Homepage() {
             }
         }
         catch (error) {
-            console.log(chalk.red(error))
+            console.log(error)
             toast.error(error.message)
         }
         finally {
@@ -61,7 +60,7 @@ function Homepage() {
             }
         }
         catch (error) {
-            console.log(chalk.red(error))
+            console.log(error)
             toast.error(error.message)
         }
         finally {
@@ -86,7 +85,7 @@ function Homepage() {
             }
         }
         catch (error) {
-            console.log(chalk.red(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
         finally {
@@ -114,7 +113,7 @@ function Homepage() {
             }
         }
         catch (error) {
-            console.log(chalk.red(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
         finally {
@@ -162,7 +161,7 @@ function Homepage() {
             }
         }
         catch (error) {
-            console.log(chalk.red(error))
+            console.log(error)
             toast.error(error.message)
         }
         finally {

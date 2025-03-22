@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import chalk from "chalk";
 
 export default function useCategory() {
 
@@ -16,7 +15,7 @@ export default function useCategory() {
             }
         }
         catch (error) {
-            console.log(chalk.red(error))
+            console.log(error)
         }
     }
 

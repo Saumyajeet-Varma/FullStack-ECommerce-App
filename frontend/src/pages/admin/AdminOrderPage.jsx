@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import toast from "react-hot-toast"
 import axios from "axios"
-import chalk from "chalk"
 
 import Layout from "../../components/Layout/Layout"
 import ProductTable from "../../components/ProductTable"
@@ -27,7 +26,7 @@ function AdminOrderPage() {
             }
         }
         catch (error) {
-            console.log(chalk.red(error))
+            console.log(error)
             toast.error("Failed to fetch order")
         }
     }

@@ -1,6 +1,6 @@
-import axios from "axios"
-import chalk from "chalk"
 import { useNavigate } from 'react-router-dom'
+import axios from "axios"
+
 import { useSearch } from "../../context/SearchProvider"
 
 const SearchInput = () => {
@@ -21,7 +21,7 @@ const SearchInput = () => {
             }
         }
         catch (error) {
-            console.log(chalk.red(error))
+            console.log(error)
         }
     }
 

@@ -16,7 +16,6 @@ function Layout({ children, title, description, keywords, author }) {
                     <meta name="author" content={author} />
                 </div>
                 <title>{title}</title>
-                {/* <link rel="canonical" href="http://mysite.com/example" /> */}
             </Helmet>
 
             <Header />

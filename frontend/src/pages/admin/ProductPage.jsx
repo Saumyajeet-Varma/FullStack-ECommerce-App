@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import toast from "react-hot-toast"
 import axios from "axios"
-import chalk from "chalk"
 
 import Layout from "../../components/Layout/Layout"
 import AdminMenu from "../../components/Layout/AdminMenu"
 import ProductForm from "../../components/form/ProductForm"
-import { useNavigate, useParams } from "react-router-dom"
 
 function ProductPage() {
 
@@ -39,7 +38,7 @@ function ProductPage() {
             }
         }
         catch (error) {
-            console.log(chalk(error))
+            console.log(error)
             toast.error(error.message)
         }
     }
@@ -59,7 +58,7 @@ function ProductPage() {
             }
         }
         catch (error) {
-            console.log(chalk(error))
+            console.log(error)
             toast.error(error.message)
         }
     }
@@ -95,7 +94,7 @@ function ProductPage() {
             }
         }
         catch (error) {
-            console.log(chalk(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
     }
@@ -115,7 +114,7 @@ function ProductPage() {
             }
         }
         catch (error) {
-            console.log(chalk(`Error: ${error.message}`))
+            console.log(error)
             toast.error("Something went wrong !")
         }
     }
