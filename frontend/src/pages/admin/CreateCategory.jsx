@@ -19,10 +19,10 @@ function CreateCategory() {
     const getAllCategories = async () => {
 
         try {
-            const response = await axios.get("/api/v1/category/get-categories")
+            const { data } = await axios.get("/api/v1/category/get-categories")
 
-            if (response.data.success) {
-                setCategories(response.data.categories)
+            if (data.success) {
+                setCategories(data.categories)
             }
         }
         catch (error) {
@@ -39,15 +39,15 @@ function CreateCategory() {
         e.preventDefault()
 
         try {
-            const response = await axios.post(`/api/v1/category/create-category`, { name })
+            const { data } = await axios.post(`/api/v1/category/create-category`, { name })
 
-            if (response.data.success) {
-                toast.success(`${response.data.category.name} is created`)
+            if (data.success) {
+                toast.success(`${data.category.name} is created`)
                 setName("")
                 getAllCategories()
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {
@@ -60,9 +60,9 @@ function CreateCategory() {
         e.preventDefault()
 
         try {
-            const response = await axios.put(`/api/v1/category/update-category/${selected._id}`, { name: updatedName })
+            const { data } = await axios.put(`/api/v1/category/update-category/${selected._id}`, { name: updatedName })
 
-            if (response.data.success) {
+            if (data.success) {
                 toast.success(`${updatedName} is updated`)
                 setSelected(null)
                 setUpdatedName("")
@@ -70,7 +70,7 @@ function CreateCategory() {
                 getAllCategories()
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {
@@ -82,14 +82,14 @@ function CreateCategory() {
     const handleDelete = async (id) => {
 
         try {
-            const response = await axios.delete(`/api/v1/category/delete-category/${id}`)
+            const { data } = await axios.delete(`/api/v1/category/delete-category/${id}`)
 
-            if (response.data.success) {
-                toast.success(`${response.data.message}`)
+            if (data.success) {
+                toast.success(`${data.message}`)
                 getAllCategories()
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {

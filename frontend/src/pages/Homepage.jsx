@@ -33,10 +33,10 @@ function Homepage() {
         try {
             setLoading(true)
 
-            const response = await axios.get("/api/v1/product/product-count")
+            const { data } = await axios.get("/api/v1/product/product-count")
 
-            if (response.data.success) {
-                setTotal(response.data.totalProducts)
+            if (data.success) {
+                setTotal(data.totalProducts)
             }
         }
         catch (error) {
@@ -53,10 +53,10 @@ function Homepage() {
         try {
             setLoading(true)
 
-            const response = await axios.get("/api/v1/category/get-categories")
+            const { data } = await axios.get("/api/v1/category/get-categories")
 
-            if (response.data.success) {
-                setCategories(response.data.categories)
+            if (data.success) {
+                setCategories(data.categories)
             }
         }
         catch (error) {
@@ -78,10 +78,10 @@ function Homepage() {
         try {
             setLoading(true)
 
-            const response = await axios.get(`/api/v1/product/product-list/${page}`)
+            const { data } = await axios.get(`/api/v1/product/product-list/${page}`)
 
-            if (response.data.success) {
-                setProducts(response.data.products)
+            if (data.success) {
+                setProducts(data.products)
             }
         }
         catch (error) {
@@ -106,10 +106,10 @@ function Homepage() {
         try {
             setPaginationLoading(true)
 
-            const response = await axios.get(`/api/v1/product/product-list/${page}`)
+            const { data } = await axios.get(`/api/v1/product/product-list/${page}`)
 
-            if (response.data.success) {
-                setProducts([...products, ...response.data.products])
+            if (data.success) {
+                setProducts([...products, ...data.products])
             }
         }
         catch (error) {
@@ -154,10 +154,10 @@ function Homepage() {
         try {
             setLoading(true)
 
-            const response = await axios.post(`/api/v1/product/product-filter`, { checked, radio })
+            const { data } = await axios.post(`/api/v1/product/product-filter`, { checked, radio })
 
-            if (response.data.success) {
-                setProducts(response?.data?.products)
+            if (data.success) {
+                setProducts(data.products)
             }
         }
         catch (error) {

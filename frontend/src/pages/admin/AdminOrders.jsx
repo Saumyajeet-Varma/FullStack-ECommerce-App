@@ -18,10 +18,10 @@ function AdminOrders() {
     const getOrders = async () => {
 
         try {
-            const response = await axios.get("/api/v1/auth/admin-orders")
+            const { data } = await axios.get("/api/v1/auth/admin-orders")
 
-            if (response.data.success) {
-                setOrders(response.data.orders)
+            if (data.success) {
+                setOrders(data.orders)
             }
         }
         catch (error) {

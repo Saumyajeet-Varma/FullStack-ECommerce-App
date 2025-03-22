@@ -19,10 +19,10 @@ function AdminOrderPage() {
     const getOrder = async () => {
 
         try {
-            const response = await axios.get(`/api/v1/auth/order/${params.orderId}`)
+            const { data } = await axios.get(`/api/v1/auth/order/${params.orderId}`)
 
-            if (response.data.success) {
-                setOrder(response.data.order)
+            if (data.success) {
+                setOrder(data.order)
             }
         }
         catch (error) {

@@ -23,10 +23,10 @@ function CreateProduct() {
     const getAllCategories = async () => {
 
         try {
-            const response = await axios.get(`/api/v1/category/get-categories`)
+            const { data } = await axios.get(`/api/v1/category/get-categories`)
 
-            if (response.data.success) {
-                setCategories(response.data.categories)
+            if (data.success) {
+                setCategories(data.categories)
             }
         }
         catch (error) {
@@ -52,14 +52,14 @@ function CreateProduct() {
             productData.append("image", image)
             productData.append("category", category)
 
-            const response = await axios.post(`/api/v1/product/create-product`, productData)
+            const { data } = await axios.post(`/api/v1/product/create-product`, productData)
 
-            if (response.data.success) {
+            if (data.success) {
                 toast.success(`Product is created`)
                 navigate("/dashboard/admin/products")
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {

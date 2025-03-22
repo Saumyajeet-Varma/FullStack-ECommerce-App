@@ -25,16 +25,16 @@ function ProductPage() {
     const getProduct = async () => {
 
         try {
-            const response = await axios.get(`/api/v1/product/get-product/${params.slug}`)
+            const { data } = await axios.get(`/api/v1/product/get-product/${params.slug}`)
 
-            if (response.data.success) {
-                setName(response.data.product.name)
-                setDescription(response.data.product.description)
-                setPrice(response.data.product.price)
-                setQuantity(response.data.product.quantity)
-                setCategory(response.data.product.category?._id)
-                setShipping(response.data.product.shipping)
-                setId(response.data.product._id)
+            if (data.success) {
+                setName(data.product.name)
+                setDescription(data.product.description)
+                setPrice(data.product.price)
+                setQuantity(data.product.quantity)
+                setCategory(data.product.category?._id)
+                setShipping(data.product.shipping)
+                setId(data.product._id)
             }
         }
         catch (error) {
@@ -51,10 +51,10 @@ function ProductPage() {
     const getAllCategories = async () => {
 
         try {
-            const response = await axios.get(`/api/v1/category/get-categories`)
+            const { data } = await axios.get(`/api/v1/category/get-categories`)
 
-            if (response.data.success) {
-                setCategories(response.data.categories)
+            if (data.success) {
+                setCategories(data.categories)
             }
         }
         catch (error) {
@@ -83,14 +83,14 @@ function ProductPage() {
                 productData.append("image", image);
             }
 
-            const response = await axios.put(`/api/v1/product/update-product/${id}`, productData)
+            const { data } = await axios.put(`/api/v1/product/update-product/${id}`, productData)
 
-            if (response.data.success) {
+            if (data.success) {
                 toast.success(`Product is updated`)
                 navigate("/dashboard/admin/products")
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {
@@ -103,14 +103,14 @@ function ProductPage() {
         e.preventDefault()
 
         try {
-            const response = await axios.delete(`/api/v1/product/delete-product/${id}`)
+            const { data } = await axios.delete(`/api/v1/product/delete-product/${id}`)
 
-            if (response.data.success) {
+            if (data.success) {
                 toast.success(`Product is deleted`)
                 navigate("/dashboard/admin/products")
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {

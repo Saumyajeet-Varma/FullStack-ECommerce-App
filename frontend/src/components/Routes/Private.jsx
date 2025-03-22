@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
 import axios from "axios"
@@ -10,12 +9,12 @@ function Private() {
 
     const [ok, setOk] = useState(false)
 
-    const [auth, setAuth] = useAuth()
+    const [auth] = useAuth()
 
     useEffect(() => {
         const authCheck = async () => {
-            const response = await axios.get('/api/v1/auth/userAuth')
-            response.data ? setOk(true) : setOk(false)
+            const { data } = await axios.get('/api/v1/auth/userAuth')
+            data ? setOk(true) : setOk(false)
         }
 
         if (auth?.token) {

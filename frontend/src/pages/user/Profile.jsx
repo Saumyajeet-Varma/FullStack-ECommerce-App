@@ -27,14 +27,14 @@ function Profile() {
         e.preventDefault()
 
         try {
-            const response = await axios.put(`/api/v1/auth/update-profile`, { name, email, phone, address })
+            const { data } = await axios.put(`/api/v1/auth/update-profile`, { name, email, phone, address })
 
-            if (response.data.success) {
-                setAuth({ ...auth, user: response.data.user })
+            if (data.success) {
+                setAuth({ ...auth, user: data.user })
 
                 let ls = localStorage.getItem("user")
                 ls = JSON.parse(ls)
-                ls.user = response.data.user
+                ls.user = data.user
                 localStorage.setItem("auth", JSON.stringify(ls))
 
                 toast.success("profile updated successfully")

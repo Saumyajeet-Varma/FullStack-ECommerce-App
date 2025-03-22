@@ -20,16 +20,16 @@ export default function Login() {
         e.preventDefault()
 
         try {
-            const response = await axios.post(`/api/v1/auth/login`, { email, password })
+            const { data } = await axios.post(`/api/v1/auth/login`, { email, password })
 
-            if (response && response.data.success) {
-                toast.success(response && response.data.message)
-                setAuth({ ...auth, user: response.data.user, token: response.data.token })
-                localStorage.setItem('auth', JSON.stringify(response.data))
+            if (data.success) {
+                toast.success(data.message)
+                setAuth({ ...auth, user: data.user, token: data.token })
+                localStorage.setItem('auth', JSON.stringify(data))
                 navigate(location.state || "/")
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {

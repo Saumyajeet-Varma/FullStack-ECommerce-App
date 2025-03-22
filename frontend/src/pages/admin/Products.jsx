@@ -12,10 +12,10 @@ function Products() {
     const getAllProducts = async () => {
 
         try {
-            const response = await axios.get("/api/v1/product/get-products")
+            const { data } = await axios.get("/api/v1/product/get-products")
 
-            if (response.data.success) {
-                setProducts(response.data.products)
+            if (data.success) {
+                setProducts(data.products)
             }
         }
         catch (error) {

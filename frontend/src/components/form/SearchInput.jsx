@@ -13,10 +13,10 @@ const SearchInput = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.get(`/api/v1/product/search/${queries.keyword}`)
+            const { data } = await axios.get(`/api/v1/product/search/${queries.keyword}`)
 
-            if (response.data.success) {
-                setQueries({ ...queries, result: response.data.result })
+            if (data.success) {
+                setQueries({ ...queries, result: data.result })
                 navigate("/search")
             }
         }

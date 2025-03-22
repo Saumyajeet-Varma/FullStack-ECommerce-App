@@ -19,14 +19,14 @@ export default function Register() {
         e.preventDefault()
 
         try {
-            const response = await axios.post(`/api/v1/auth/register`, { name, email, password, phone, address })
+            const { data } = await axios.post(`/api/v1/auth/register`, { name, email, password, phone, address })
 
-            if (response && response.data.success) {
-                toast.success(response && response.data.message)
+            if (data.success) {
+                toast.success(data.message)
                 navigate("/login")
             }
             else {
-                toast.error(response.data.message)
+                toast.error(data.message)
             }
         }
         catch (error) {

@@ -17,9 +17,9 @@ const ChangePassword = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.put(`/api/v1/auth/change-password`, { currentPassword, newPassword })
+            const { data } = await axios.put(`/api/v1/auth/change-password`, { currentPassword, newPassword })
 
-            if (response.data.success) {
+            if (data.success) {
                 toast.success("password changed successfully")
                 navigate("/dashboard/user")
             }

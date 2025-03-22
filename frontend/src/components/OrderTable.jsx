@@ -11,9 +11,9 @@ const OrderTable = ({ orders, admin, status }) => {
     const handleChange = async (value, orderId) => {
 
         try {
-            const response = await axios.put(`/api/v1/auth/change-order-status/${orderId}`, { status: value })
+            const { data } = await axios.put(`/api/v1/auth/change-order-status/${orderId}`, { status: value })
 
-            if (response.data.success) {
+            if (data.success) {
                 toast.success("Status changed successfully")
             }
         }
