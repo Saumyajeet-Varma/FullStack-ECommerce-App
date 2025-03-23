@@ -1,6 +1,6 @@
 import express from 'express'
-import { registerController, loginController, updateProfileController, changePasswordController, getAllOrdersController, getOrderController, getAllAdminOrdersController, changeOrderStatusController } from '../controllers/authController.js'
 import { isAdmin, verifyJWT } from '../middlewares/authMiddleware.js'
+import { registerController, loginController, updateProfileController, changePasswordController } from '../controllers/authController.js'
 
 const router = express.Router()
 
@@ -19,13 +19,5 @@ router.get("/userAuth", verifyJWT, (req, res) => {
 router.get("/adminAuth", verifyJWT, isAdmin, (req, res) => {
     res.status(200).send({ ok: true })
 })
-
-router.get("/orders", verifyJWT, getAllOrdersController)
-
-router.get("/order/:orderId", verifyJWT, getOrderController)
-
-router.get("/admin-orders", verifyJWT, isAdmin, getAllAdminOrdersController)
-
-router.put("/change-order-status/:orderId", verifyJWT, isAdmin, changeOrderStatusController)
 
 export default router

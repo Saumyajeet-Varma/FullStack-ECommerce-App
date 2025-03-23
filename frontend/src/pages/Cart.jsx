@@ -59,7 +59,7 @@ const Cart = () => {
                 throw new Error("Failed to get payment nonce");
             }
 
-            const { data } = await axios.post("/api/v1/product/braintree/payment", {
+            const { data } = await axios.post("/api/v1/order/braintree/payment", {
                 cart,
                 nonce,
             });
@@ -83,7 +83,7 @@ const Cart = () => {
 
     const getClientToken = async () => {
         try {
-            const { data } = await axios.get("/api/v1/product/braintree/token");
+            const { data } = await axios.get("/api/v1/order/braintree/token");
 
             if (data.success) {
                 setClientToken(data.token);

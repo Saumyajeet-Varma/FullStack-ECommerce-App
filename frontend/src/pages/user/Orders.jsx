@@ -16,7 +16,7 @@ function Orders() {
     const getOrders = async () => {
 
         try {
-            const { data } = await axios.get("/api/v1/auth/orders")
+            const { data } = await axios.get("/api/v1/order/orders")
 
             if (data.success) {
                 setOrders(data.orders)

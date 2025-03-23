@@ -2,22 +2,9 @@ import mongoose from 'mongoose'
 import slugify from 'slugify'
 import chalk from 'chalk'
 import fs from 'fs'
-import braintree from 'braintree'
-import dotenv from "dotenv";
 
 import productModel from '../models/productModel.js'
 import categoryModel from '../models/categoryModel.js'
-import orderModel from '../models/orderModel.js'
-
-dotenv.config();
-
-// * Payment Gateway
-var gateway = new braintree.BraintreeGateway({
-    environment: braintree.Environment.Sandbox,
-    merchantId: process.env.BRAINTREE_MERCHANT_ID,
-    publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-    privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-});
 
 export const createProductController = async (req, res) => {
 
@@ -418,94 +405,6 @@ export const categoryProductsController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: "Error in fecthing category products",
-            error
-        })
-    }
-}
-
-export const braintreeTokenController = async (req, res) => {
-
-    try {
-        gateway.clientToken.generate({}, function (error, response) {
-
-            if (error) {
-                res.status(500).send({
-                    success: false,
-                    message: "Error in braintree client token generation",
-                    error
-                })
-            }
-            else {
-                if (response.success) {
-                    res.status(200).send({
-                        success: true,
-                        message: "Token generated successfully",
-                        token: response.clientToken
-                    })
-                }
-                else {
-                    res.status(500).send({
-                        success: false,
-                        message: "Braintree client token generation failed",
-                        error
-                    })
-                }
-            }
-        })
-    }
-    catch (error) {
-        console.log(chalk.red(error));
-
-        res.status(500).send({
-            success: false,
-            message: "Error in braintree token",
-            error
-        })
-    }
-}
-
-export const braintreePaymentController = async (req, res) => {
-
-    try {
-        const { cart, nonce } = req.body
-
-        const total = cart.reduce((acc, item) => acc + item.price, 0)
-
-        let newTransaction = gateway.transaction.sale(
-            {
-                amount: total,
-                paymentMethodNonce: nonce,
-                options: {
-                    submitForSettlement: true,
-                }
-            },
-            function (error, result) {
-                if (result.success) {
-                    const order = orderModel.create({
-                        products: cart,
-                        payment: result,
-                        buyer: req.user._id,
-                    })
-
-                    return res.status(200).send({
-                        success: true,
-                        message: "Braintree payment done",
-                    })
-                }
-                else {
-                    return res.status(500).send({
-                        success: false,
-                        message: "Braintree payment failed",
-                    })
-                }
-            })
-    }
-    catch (error) {
-        console.log(chalk.red(error));
-
-        res.status(500).send({
-            success: false,
-            message: "Error in braintree payment",
             error
         })
     }
