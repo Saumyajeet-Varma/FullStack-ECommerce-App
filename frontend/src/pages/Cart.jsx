@@ -10,7 +10,6 @@ import { useAuth } from "../context/AuthProvider";
 import { useCart } from "../context/CartProvider";
 
 const Cart = () => {
-
     const [clientToken, setClientToken] = useState("");
     const [instance, setInstance] = useState("");
     const [paymentLoading, setPaymentLoading] = useState(false);
@@ -21,19 +20,16 @@ const Cart = () => {
     const navigate = useNavigate();
 
     const totalPrice = () => {
-
         try {
             const total = cart.reduce((acc, val) => (acc += val.price), 0);
             return total;
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
             toast.error("Failed in calculating the total");
         }
     };
 
     const handleRemove = (id) => {
-
         try {
             let myCart = [...cart];
             let index = myCart.findIndex((item) => item._id === id);
@@ -41,15 +37,13 @@ const Cart = () => {
             setCart(myCart);
             localStorage.setItem("cart", JSON.stringify(myCart));
             toast.success("Item removed from cart");
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
             toast.error("Failed to remove item from cart");
         }
     };
 
     const handlePayment = async () => {
-
         try {
             setPaymentLoading(true);
 
@@ -71,12 +65,10 @@ const Cart = () => {
                 navigate("/dashboard/user/orders");
                 toast.success("Payment completed successfully");
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
             toast.error("Error in payment");
-        }
-        finally {
+        } finally {
             setPaymentLoading(false);
         }
     };
@@ -88,16 +80,17 @@ const Cart = () => {
             if (data.success) {
                 setClientToken(data.token);
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
             toast.error("Failed to get client token");
         }
     };
 
     useEffect(() => {
-        getClientToken();
-    }, [auth?.token]);
+        if (auth?.user) {
+            getClientToken();
+        }
+    }, [auth?.user]);
 
     return (
         <Layout title={"Cartify - Cart"}>
@@ -119,7 +112,11 @@ const Cart = () => {
                 </div>
                 <div className="flex my-4 gap-6">
                     <div className="w-2/3">
-                        <ProductTable products={cart} purpose="cart" handleRemove={handleRemove} />
+                        <ProductTable
+                            products={cart}
+                            purpose="cart"
+                            handleRemove={handleRemove}
+                        />
                     </div>
                     <div className="w-1/3">
                         <h1 className="text-3xl text-center font-semibold mb-2">

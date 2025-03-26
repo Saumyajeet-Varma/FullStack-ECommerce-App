@@ -1,5 +1,6 @@
 import slugify from "slugify";
 import mongoose from "mongoose";
+import chalk from 'chalk'
 
 import categoryModel from "../models/categoryModel.js";
 

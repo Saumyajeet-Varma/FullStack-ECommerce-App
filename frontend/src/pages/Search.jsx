@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
+
 import SearchInput from "../components/form/SearchInput.jsx"
 import Layout from "../components/Layout/Layout.jsx"
 import { useSearch } from "../context/SearchProvider.jsx"
+import { useCart } from "../context/CartProvider.jsx"
 
 const Search = () => {
 
-    // eslint-disable-next-line no-unused-vars
-    const [queries, setQueries] = useSearch()
+    const [queries] = useSearch()
+    const [cart, setCart] = useCart()
+
+    const navigate = useNavigate()
 
     return (
         <Layout title={"Search results"}>
@@ -16,7 +22,7 @@ const Search = () => {
                     <h6>{queries?.result.length < 1 ? "No product found" : `Found ${queries.result.length} product(s)`}</h6>
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">
                         {queries.result.map((product) => (
-                            <div className="group relative p-4 bg-gray-100 rounded-lg -z-10" key={product._id}>
+                            <div className="group relative p-4 bg-gray-100 rounded-lg" key={product._id}>
                                 <img
                                     alt="Product image"
                                     src={`/api/v1/product/get-product-image/${product._id}`}
@@ -33,10 +39,15 @@ const Search = () => {
                                     <p className="text-sm font-medium text-gray-900">{product.price}</p>
                                 </div>
                                 <div className="w-full flex items-center justify-between mt-4">
-                                    <button className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+                                    <button onClick={() => navigate(`/product/${product.slug}`)} className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 z-0">
                                         More details
                                     </button>
-                                    <button className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+                                    <button
+                                        onClick={() => {
+                                            setCart([...cart, product]);
+                                            toast.success(`${product.name} added to cart`)
+                                        }}
+                                        className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 z-0">
                                         Add to cart
                                     </button>
                                 </div>
