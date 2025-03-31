@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
+    "start" : "node server.js",
+    "backend": "nodemon server.js",
     "frontend": "npm run dev --prefix ./frontend",
     "concurrent": "concurrently \"npm start\" \"npm run frontend\""
   },
