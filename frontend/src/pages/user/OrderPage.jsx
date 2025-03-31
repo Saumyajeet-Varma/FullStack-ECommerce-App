@@ -7,10 +7,12 @@ import Layout from "../../components/Layout/Layout"
 import UserMenu from "../../components/Layout/UserMenu"
 import ProductTable from "../../components/ProductTable"
 import { useAuth } from "../../context/AuthProvider"
+import Spinner from "../../components/Spinner"
 
 function OrderPage() {
 
     const [order, setOrder] = useState({})
+    const [loading, setLoading] = useState(false)
 
     const [auth] = useAuth()
 
@@ -19,6 +21,8 @@ function OrderPage() {
     const getOrder = async () => {
 
         try {
+            setLoading(true)
+
             const { data } = await axios.get(`/api/v1/order/order/${params.orderId}`)
 
             if (data.success) {
@@ -28,6 +32,9 @@ function OrderPage() {
         catch (error) {
             console.log(error)
             toast.error("Failed to fetch order")
+        }
+        finally {
+            setLoading(false)
         }
     }
 
@@ -44,13 +51,15 @@ function OrderPage() {
                 <div className="flex">
                     <UserMenu />
                     <div className="p-5 w-4/5">
-                        <div className="w-full flex flex-wrap justify-between items-center">
-                            <h1 className="text-3xl font-semibold">Order</h1>
-                            <p className="text-md text-gray-600">Order Id - {order._id}</p>
-                        </div>
-                        <div className="w-full mt-5">
-                            <ProductTable products={order.products} purpose="order" />
-                        </div>
+                        {loading ? <Spinner /> : <>
+                            <div className="w-full flex flex-wrap justify-between items-center">
+                                <h1 className="text-3xl font-semibold">Order</h1>
+                                <p className="text-md text-gray-600">Order Id - {order._id}</p>
+                            </div>
+                            <div className="w-full mt-5">
+                                <ProductTable products={order.products} purpose="order" />
+                            </div>
+                        </>}
                     </div>
                 </div>
             </Layout>
